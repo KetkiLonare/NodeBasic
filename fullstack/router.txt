@@ -1,0 +1,30 @@
+const express = require('express');
+const app = express();
+const productRouter = express.Router()
+const categoryRouter = express.Router()
+
+categoryRouter.route('/details')
+    .get((req, res) => {
+        res.send("details")
+    })
+categoryRouter.route('/')
+    .get((req, res) => {
+        res.send("default")
+    })
+
+// app.get('/', (req, res) => {
+//     res.send("I am a defautl port")
+// })
+// app.get('/product', (req, res) => {
+//     res.send("I am a product api")
+// })
+// app.get('/category', (req, res) => {
+//     res.send("I am a category port")
+// })
+
+app.use('/product', productRouter);
+app.use('/category', categoryRouter);
+app.listen(3000, (err) => {
+    if (err) throw err;
+    console.log("running on 3000")
+})
